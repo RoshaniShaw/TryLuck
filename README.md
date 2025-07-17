@@ -2,14 +2,6 @@
 
 Welcome to my creative project combining an animated heart-shaped invitation and a fun prize game! Built using **HTML**, **CSS**, and **JavaScript**, this interactive experience allows visitors to open mystery gifts and try their luck.
 
----
-
-## 🚀 Live Demo
-
-👉 [Click Here to Experience It Live](https://roshanishaw.github.io/TryLuck/)
-
----
-
 ## 🎉 Features
 
 - 💓 **Heart Invitation Card**  
