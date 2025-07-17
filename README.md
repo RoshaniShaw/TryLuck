@@ -1,4 +1,4 @@
-# ❤️ Heart Invitation + 🎁 Try Your Luck Game
+# 🎁 Try Your Luck Game
 
 Welcome to my creative project combining an animated heart-shaped invitation and a fun prize game! Built using **HTML**, **CSS**, and **JavaScript**, this interactive experience allows visitors to open mystery gifts and try their luck.
 
