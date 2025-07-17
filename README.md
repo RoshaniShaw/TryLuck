@@ -6,7 +6,7 @@ Welcome to my creative project combining an animated heart-shaped invitation and
 
 ## 🚀 Live Demo
 
-👉 [Click Here to Experience It Live](https://roshanishaaw.github.io/TryLuck/)
+👉 [Click Here to Experience It Live](https://roshanishaw.github.io/TryLuck/)
 
 ---
 
@@ -32,7 +32,7 @@ Welcome to my creative project combining an animated heart-shaped invitation and
 ## 👏 Try it Now!
 
 Ready to test your luck?  
-👉 [https://roshanishaaw.github.io/TryLuck/](https://roshanishaaw.github.io/TryLuck/)
+👉 [https://roshanishaw.github.io/TryLuck/](https://roshanishaw.github.io/TryLuck/)
 
 ---
 
