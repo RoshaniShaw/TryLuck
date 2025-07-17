@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prize Game</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: serif;
+            text-align: center;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        .chances-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: darkred;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gift {
+            width: 120px;
+            height: 120px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3PFP9qNAZupqFyl5aHEy5BNLLmic2XipXvw&s');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: black;
+        }
+
+        .gift.opened {
+            background-image: none;
+            border: 2px solid purple;
+            background-color: #f0e6ff;
+        }
+
+        .message {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        #thank-you-btn {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: purple;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #thank-you-btn:hover {
+            background-color: darkmagenta;
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Choose a Gift!</h2>
+<div class="chances-text" id="chances-message">You have only 3 chances</div>
+
+<div class="grid" id="giftGrid"></div>
+
+<button id="thank-you-btn">Thank You</button>
+
+<script>
+    const messages = [
+        "Better luck next time",
+        "Better luck next time",
+        "Better luck next time",
+        "Better luck next time",
+        "You are lucky",
+        "You are lucky",
+        "You are lucky",
+        "You are lucky",
+        "Congratulations! You won"
+    ];
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const grid = document.getElementById('giftGrid');
+    const chancesMessage = document.getElementById('chances-message');
+    const thankYouBtn = document.getElementById('thank-you-btn');
+
+    const shuffledMessages = shuffle([...messages]);
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    function updateChancesMessage() {
+        if (attempts === 1) {
+            chancesMessage.innerText = "Only 2 chances left!";
+        } else if (attempts === 2) {
+            chancesMessage.innerText = "Only 1 more chance left!";
+        } else if (attempts >= maxAttempts) {
+            chancesMessage.innerText = "Try your luck next time!";
+            thankYouBtn.style.display = "inline-block";
+        }
+    }
+
+    for (let i = 0; i < 9; i++) {
+        const gift = document.createElement('div');
+        gift.classList.add('gift');
+
+        const msg = document.createElement('div');
+        msg.classList.add('message');
+        msg.innerText = shuffledMessages[i];
+        gift.appendChild(msg);
+
+        gift.onclick = () => {
+            if (attempts >= maxAttempts) {
+                chancesMessage.classList.remove('shake');
+                void chancesMessage.offsetWidth; // Restart animation
+                chancesMessage.classList.add('shake');
+                return;
+            }
+
+            if (!gift.classList.contains('opened')) {
+                gift.classList.add('opened');
+                msg.classList.add('visible');
+                attempts++;
+                updateChancesMessage();
+            }
+        };
+
+        grid.appendChild(gift);
+    }
+</script>
+
+</body>
+</html>

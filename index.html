@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Invitation</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: white;
+            overflow: hidden;
+            font-family: serif;
+            text-align: center;
+        }
+
+        .heart-card {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 360px;
+            background-color: #ff4d6d;
+            clip-path: path("M 200 60 C 200 0, 0 0, 0 100 C 0 180, 200 320, 200 360 C 200 320, 400 180, 400 100 C 400 0, 200 0, 200 60 Z");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 50px rgba(255, 77, 109, 0.6);
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .animated-text {
+            opacity: 0;
+            animation: fadeInText 3s forwards;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .button {
+            margin-top: 500px;
+            padding: 15px 30px;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: darkmagenta;
+        }
+
+        .small-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 1rem;
+            animation: floatUp linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-800px) scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="heart-card">
+    <div class="animated-text">
+        Welcome to my<br>Invitation Repo
+    </div>
+</div>
+
+<button class="button" onclick="window.location.href='game.html'">Tap here to get the prize</button>
+
+<script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('small-heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = window.innerHeight + 'px';
+        heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+        heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 8000);
+    }
+
+    setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
